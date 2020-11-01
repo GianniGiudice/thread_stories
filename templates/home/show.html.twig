@@ -1,15 +1,28 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+{% endblock %}
+
 {% block body %}
     <div class="row">
         <div class="col-md-8 p-3">
             <div class="bg-white p-3 rounded">
-                Liste des Thread
+                <h1>Liste des Thread</h1>
             </div>
         </div>
         <div class="col-md-4 p-3">
-            <div class="bg-white p-3 rounded">
-                Meilleurs Thread du jour
+            <div class="bg-white rounded">
+                <h2 class="p-3">Meilleurs Thread</h2>
+
+                <p class="p-3">
+                    Ceci est un thread
+                </p>
+
+                <p class="p-3">
+                    Ceci est un autre thread
+                </p>
             </div>
         </div>
     </div>

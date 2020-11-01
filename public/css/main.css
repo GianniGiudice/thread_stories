@@ -1,3 +1,7 @@
+body {
+    color: #343a40;
+}
+
 nav .navbar-brand {
     font-family: 'Concert One', cursive;
 }
@@ -6,6 +10,28 @@ nav .navbar-brand .logo {
     height: 30px;
 }
 
+nav .nav-item {
+    margin-right: 10px
+}
+
+nav .nav-item .nav-link {
+    color: rgba(255,255,255,.75) !important;
+}
+
+nav .nav-item .nav-link:hover {
+    color: rgba(255,255,255,1) !important;
+}
+
+nav .nav-item a.nav-link {
+    margin-top: 5px;
+}
+
 .main-container {
     margin-top: 100px;
+}
+
+@media (max-width: 767px) {
+    nav .nav-item {
+        margin-bottom: 10px
+    }
 }

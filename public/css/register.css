@@ -1,0 +1,12 @@
+.main-container {
+    margin-top: 0;
+}
+
+.register {
+    height: 100vh;
+}
+
+input {
+    padding: .375rem .75rem;
+    padding-left: 0.3rem;
+}
