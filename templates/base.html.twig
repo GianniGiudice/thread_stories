@@ -22,12 +22,16 @@
 
     <title>{% block title %}Thread Stories{% endblock %}</title>
 </head>
-<body class="bg-light">
+<body>
+    <div id="toTopBtn">
+        <img src="{{ asset('img/totop.png') }}" alt="To top" title="Remonter">
+    </div>
+
     {% block navbar %}
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top border-bottom">
             <a class="navbar-brand" href="{{ path('home_show') }}"><img class="logo" src="{{ asset('img/logo.png') }}" alt="logo" title="Thread Stories"> Thread Stories</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fas fa-bars"></i>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
@@ -35,9 +39,9 @@
                     <li>
 
                     </li>
-                    <li class="nav-item">
+                    {# <li class="nav-item">
                         <a class="nav-link" href="#">Home</a>
-                    </li>
+                    </li> #}
 
                 </ul>
                 <ul class="navbar-nav">
@@ -47,10 +51,10 @@
                     </li>
                     {% else %}
                         <li class="nav-item">
-                            <a class="btn btn-outline-light" href="{{ path('app_login') }}">Connexion</a>
+                            <a class="btn btn-outline-thread" href="{{ path('app_login') }}">Connexion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="btn btn-light" href="{{ path('app_register') }}">Inscription</a>
+                            <a class="btn btn-thread" href="{{ path('app_register') }}">Inscription</a>
                         </li>
                     {% endif %}
                 </ul>
@@ -72,9 +76,29 @@
     </div>
 
     {% block javascripts %}
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+
+        <script>
+            $(document).ready(function () {
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 20) {
+                        $('#toTopBtn').fadeIn();
+                    }
+                    else {
+                        $('#toTopBtn').fadeOut();
+                    }
+                });
+
+                $('#toTopBtn').click(function () {
+                    $("html, body").animate({
+                        scrollTop: 0
+                    }, 1000);
+                    return false;
+                });
+            });
+        </script>
     {% endblock %}
 </body>
 </html>

@@ -1,13 +1,48 @@
 body {
     color: #343a40;
+    background: #DDE4E9;
 }
+
+.alert-danger {
+    color: #D21944;
+    background-color: #FEE2E9;
+    border-color: #F58FA7;
+}
+
+.alert-success {
+    color: #12986c;
+    background-color: #E0FBF1;
+    border-color: #7DD6B9;
+}
+
+#toTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 10px;
+    right: 50px;
+    z-index: 98;
+    padding: 15px;
+    color: red;
+    cursor: pointer;
+}
+
+#toTopBtn img {
+    width: 32px;
+}
+
+nav {
+    background: #fff;
+}
+
 
 nav .navbar-brand {
     font-family: 'Concert One', cursive;
+    color: #343a40 !important;
 }
 
 nav .navbar-brand .logo {
     height: 30px;
+    margin-bottom: 8px;
 }
 
 nav .nav-item {
@@ -15,23 +50,69 @@ nav .nav-item {
 }
 
 nav .nav-item .nav-link {
-    color: rgba(255,255,255,.75) !important;
+    color: rgba(52,58,64,.75) !important;
 }
 
 nav .nav-item .nav-link:hover {
-    color: rgba(255,255,255,1) !important;
+    color: rgba(52,58,64,1) !important;
 }
 
 nav .nav-item a.nav-link {
     margin-top: 5px;
 }
 
+.navbar-toggler {
+    color: #343a40 !important;
+}
+
 .main-container {
     margin-top: 100px;
+}
+
+.btn-thread {
+    background: #5688BB;
+    color: #fff;
+}
+
+.btn-thread:hover {
+    background: #376DA5;
+    color: #fff;
+}
+
+.btn-outline-thread {
+    border: 1px solid #5688BB;
+    color: #5688BB;
+}
+
+.btn-outline-thread:hover {
+    border: 1px solid #376DA5;
+    color: #376DA5;
+}
+
+.thread-block {
+    background: #fff;
+    border-radius: .25rem !important;
+}
+
+.thread-header {
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.thread-title {
+    font-weight: bold;
+}
+
+.thread-content {
+    font-size: 15px;
 }
 
 @media (max-width: 767px) {
     nav .nav-item {
         margin-bottom: 10px
+    }
+
+    nav .nav-item .btn {
+        width: 100%;
     }
 }
