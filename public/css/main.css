@@ -61,6 +61,14 @@ nav .nav-item a.nav-link {
     margin-top: 5px;
 }
 
+nav .nav-item .logout {
+    color: rgba(210,25,68,.75) !important;
+}
+
+nav .nav-item .logout:hover {
+    color: rgba(210,25,68,1) !important;
+}
+
 .navbar-toggler {
     color: #343a40 !important;
 }

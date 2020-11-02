@@ -8,7 +8,7 @@
 {% block body %}
     <div class="row">
         <div class="col-md-8 p-3">
-            <button class="btn btn-thread w-100 mb-3"><i class="fas fa-plus-circle"></i> Ajouter un Thread</button>
+            <a class="btn btn-thread w-100 mb-3" href="{{ path('thread_create') }}"><i class="fas fa-plus-circle"></i> Ajouter un Thread</a>
             <div class="all-thread">
                 {% include 'thread/thread_block.html.twig' %}
 
