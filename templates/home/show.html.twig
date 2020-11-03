@@ -10,15 +10,9 @@
         <div class="col-md-8 p-3">
             <a class="btn btn-thread w-100 mb-3" href="{{ path('thread_create') }}"><i class="fas fa-plus-circle"></i> Ajouter un Thread</a>
             <div class="all-thread">
-                {% include 'thread/thread_block.html.twig' %}
-
-                {% include 'thread/thread_block.html.twig' %}
-
-                {% include 'thread/thread_block.html.twig' %}
-
-                {% include 'thread/thread_block.html.twig' %}
-
-                {% include 'thread/thread_block.html.twig' %}
+                {% for thread in threads %}
+                    {% include 'thread/thread_block.html.twig' with {'thread': thread} %}
+                {% endfor %}
             </div>
         </div>
         <div class="col-md-4 p-3">

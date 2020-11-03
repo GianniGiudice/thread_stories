@@ -2,12 +2,26 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/thread.css') }}">
 {% endblock %}
 
 {% block body %}
     <div class="row">
         <div class="col-md-8 m-md-auto pt-5">
+            <h1>Création d'un Thread</h1>
+
+            {% for error in errors %}
+                {% for message in error %}
+                    <div class="alert alert-danger" role="alert">{{ message }}</div>
+                {% endfor %}
+            {% endfor %}
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
             {{ form(form) }}
         </div>
     </div>

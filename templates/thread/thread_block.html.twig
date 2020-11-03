@@ -1,19 +1,19 @@
 <p class="thread-block">
     <div class="row border border m-0">
         <div class="col-1 bg-light p-2 text-center text-success font-weight-bold">
-            +2
+            +0
         </div>
         <div class="col-11  bg-white p-2">
             <p class="thread-header">
-                Par Gianni il y a 10 minutes
+                Par {{ thread.author.email}} le {{ thread.getPublicationDate|date('d/m/Y') }}
             </p>
 
-            <p class="thread-title">
-                Un dernier Halloween..
+            <p class="thread-title border-bottom">
+                {{ thread.title }}
             </p>
 
             <p class="thread-content">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem cumque earum, expedita ipsum molestias nostrum praesentium saepe sed. Accusantium assumenda dolores eaque impedit itaque molestiae nemo nesciunt officiis sunt unde.
+                {{ thread.content|raw }}
             </p>
         </div>
     </div>
