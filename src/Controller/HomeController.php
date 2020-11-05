@@ -24,7 +24,7 @@ class HomeController extends AbstractController
     public function index(ThreadRepository $threadRepository)
     {
         return $this->render('home/show.html.twig', [
-            'threads' => $threadRepository->findAll()
+            'threads' => $threadRepository->findBy([], ['publication_date' => 'DESC'])
         ]);
     }
 }

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {# <link rel="stylesheet" href="{{ asset('css/user.css') }}"> #}
+{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="all-thread">
+                {% for thread in threads %}
+                    {% include 'thread/thread_block.html.twig' with {'thread': thread} %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-4 p-3">
+            <div class="bg-white rounded">
+                <div class="bg-dark p-3 text-white">
+                    Profil
+                </div>
+
+                <p class="p-3">
+                    <b>{{ user.pseudo }}</b><br>
+                    Depuis le {{ user.subscription|date('d/m/Y') }}
+                </p>
+
+                {% if user != app.user %}
+                    <p class="p-3">
+                        <a href="#" alt="Suivre" class="btn btn-thread w-100">Suivre</a>
+                    </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -113,6 +113,8 @@ nav .nav-item .logout:hover {
 
 .thread-content {
     font-size: 15px;
+    max-height: 250px;
+    overflow-y: scroll;
 }
 
 @media (max-width: 767px) {

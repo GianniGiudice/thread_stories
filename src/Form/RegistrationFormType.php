@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -20,6 +21,22 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('email', EmailType::class, [
                 'label' => 'Adresse mail',
+                'attr' => [
+                    'class' => 'w-100'
+                ]
+            ])
+            ->add('pseudo', TextType::class, [
+                'label' => 'Pseudo',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Veuillez saisir un pseudo.',
+                    ]),
+                    new Length([
+                        'min' => 3,
+                        'minMessage' => 'Votre pseudo doit comporter entre 3 et 30 caractères.',
+                        'max' => 30,
+                    ])
+                ],
                 'attr' => [
                     'class' => 'w-100'
                 ]
@@ -42,7 +59,7 @@ class RegistrationFormType extends AbstractType
                         'message' => 'Veuillez saisir un mot de passe.',
                     ]),
                     new Length([
-                        'min' => 6,
+                        'min' => 4,
                         'minMessage' => 'Votre mot de passe doit comporter au moins {{ limit }} caractères.',
                         // max length allowed by Symfony for security reasons
                         'max' => 4096,

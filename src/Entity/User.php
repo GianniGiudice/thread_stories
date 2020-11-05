@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -43,9 +44,21 @@ class User implements UserInterface
      */
     private $threads;
 
+    /**
+     * @ORM\Column(type="string", length=20, unique=true)
+     * @Assert\Type(type="alnum", message="Le pseudo ne peut contenir que des lettres et / ou des chiffres.")
+     */
+    private $pseudo;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $subscription;
+
     public function __construct()
     {
         $this->threads = new ArrayCollection();
+        $this->subscription = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
     }
 
     public function getId(): ?int
@@ -152,6 +165,30 @@ class User implements UserInterface
                 $thread->setAuthor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPseudo(): string
+    {
+        return (string) $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
+
+        return $this;
+    }
+
+    public function getSubscription(): ?\DateTimeInterface
+    {
+        return $this->subscription;
+    }
+
+    public function setSubscription(\DateTimeInterface $subscription): self
+    {
+        $this->subscription = $subscription;
 
         return $this;
     }
