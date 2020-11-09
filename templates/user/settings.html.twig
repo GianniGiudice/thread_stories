@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+{% endblock %}
+
+{% block body %}
+        <div class="col-md-12 p-3">
+            <h1 class="mb-5 text-center">Modification de l'avatar et de la bannière</h1>
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="bg-white rounded p-3">
+
+                        {{ form_start(form) }}
+
+                        <div class="d-flex align-items-end">
+                            <div class="border-right p-2">
+                            {% if user.avatar and user.avatar.getAvatarName %}
+                                <img src="{{ vich_uploader_asset(user.avatar, 'avatar_file') }}" alt="Avatar" class="avatar rounded">
+                            {% else %}
+                                <img src="{{ asset('img/basic_avatar.png') }}" alt="Avatar" class="avatar bg-dark rounded">
+                            {% endif %}
+                            </div>
+                            <div>
+                                <p class="p-3">
+                                    Pour un meilleur rendu, veuillez sélectionner un avatar dont la longueur et la largeur sont équivalentes.
+                                </p>
+                                {{ form_row(form.avatar_file) }}
+                            </div>
+                        </div>
+
+                        {{ form_row(form.submit) }}
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="bg-white rounded p-3">
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+
+                        <div class="banner-block" {% if user.banner and user.banner.getBannerName %}style="background: url('{{ vich_uploader_asset(user.banner, 'banner_file') }}'); background-size: cover; background-position: top center;"{% endif %}>
+                            <div class="choose-form m-auto">
+                                {{ form(banner_form) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

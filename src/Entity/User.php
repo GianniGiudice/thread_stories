@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -15,7 +16,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="Un compte a déjà été créé avec cette adresse mail.")
- * @Vich\Uploadable()
  */
 class User implements UserInterface
 {
@@ -59,16 +59,14 @@ class User implements UserInterface
     private $subscription;
 
     /**
-     * @var string|null
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToOne(targetEntity=Avatar::class, mappedBy="owner")
      */
-    private $avatar_name;
+    private $avatar;
 
     /**
-     * @var File|null
-     * @Vich\UploadableField(mapping="avatar_image", fileNameProperty="avatar_name")
+     * @ORM\OneToOne(targetEntity=Banner::class, mappedBy="owner")
      */
-    private $avatar_file;
+    private $banner;
 
     public function __construct()
     {
@@ -209,39 +207,19 @@ class User implements UserInterface
     }
 
     /**
-     * @return string|null
+     * @return Avatar|null
      */
-    public function getAvatarName(): ?string
+    public function getAvatar(): ?Avatar
     {
-        return $this->avatar_name;
+        return $this->avatar;
     }
 
     /**
-     * @param string|null $avatar_name
-     * @return User
+     * @return Banner|null
      */
-    public function setAvatarName(?string $avatar_name): User
+    public function getBanner(): ?Banner
     {
-        $this->avatar_name = $avatar_name;
-        return $this;
-    }
-
-    /**
-     * @return File|null
-     */
-    public function getAvatarFile(): ?File
-    {
-        return $this->avatar_file;
-    }
-
-    /**
-     * @param File|null $avatar_file
-     * @return User
-     */
-    public function setAvatarFile(?File $avatar_file): User
-    {
-        $this->avatar_file = $avatar_file;
-        return $this;
+        return $this->banner;
     }
 
 

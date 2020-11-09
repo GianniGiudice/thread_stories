@@ -5,9 +5,8 @@ vich_uploader:
         avatar_image:
             uri_prefix: /img/avatars
             upload_destination: '%kernel.project_dir%/public/img/avatars'
-
-
-    #mappings:
-    #    products:
-    #        uri_prefix: /images/products
-    #        upload_destination: '%kernel.project_dir%/public/images/products'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer
+        banner_image:
+            uri_prefix: /img/banners
+            upload_destination: '%kernel.project_dir%/public/img/banners'
+            namer: Vich\UploaderBundle\Naming\UniqidNamer

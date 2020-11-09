@@ -9,18 +9,33 @@
     <div class="row">
         <div class="col-md-8">
             <div class="all-thread">
-                {% for thread in threads %}
-                    {% include 'thread/thread_block.html.twig' with {'thread': thread} %}
-                {% endfor %}
+                {% if threads|length > 0 %}
+                    {% for thread in threads %}
+                        {% include 'thread/thread_block.html.twig' with {'thread': thread} %}
+                    {% endfor %}
+                {% else %}
+                    <div class="bg-white rounded mt-3 p-3">
+                        Aucun Thread.
+                    </div>
+                {% endif %}
             </div>
         </div>
         <div class="col-md-4 p-3">
             <div class="bg-white rounded">
-                <div class="bg-dark p-3 text-white profile-head">
-                    Profil
+                <div class="banner-block profile-head" {% if user.banner and user.banner.getBannerName %}style="background: url('{{ vich_uploader_asset(user.banner, 'banner_file') }}'); background-size: cover; background-position: top center;"{% endif %}>
+                    <div class="m-auto">
+                        {% if user.avatar and user.avatar.getAvatarName %}
+                            <img src="{{ vich_uploader_asset(user.avatar, 'avatar_file') }}" alt="Avatar">
+                        {% else %}
+                            <img src="{{ asset('img/basic_avatar.png') }}" alt="Avatar">
+                        {% endif %}
+                    </div>
                 </div>
 
                 <p class="p-3">
+                    {% if user == app.user %}
+                        <a href="{{ path('settings') }}" alt="Paramètres"><span class="float-right settings-button"><i class="fas fa-cog"></i></span></a>
+                    {% endif %}
                     <b>{{ user.pseudo }}</b><br>
                     Depuis le {{ user.subscription|date('d/m/Y') }}
                 </p>
