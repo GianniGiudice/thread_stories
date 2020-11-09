@@ -7,12 +7,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @UniqueEntity(fields={"email"}, message="Un compte a déjà été créé avec cette adresse mail.")
+ * @Vich\Uploadable()
  */
 class User implements UserInterface
 {
@@ -54,6 +57,18 @@ class User implements UserInterface
      * @ORM\Column(type="date")
      */
     private $subscription;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255)
+     */
+    private $avatar_name;
+
+    /**
+     * @var File|null
+     * @Vich\UploadableField(mapping="avatar_image", fileNameProperty="avatar_name")
+     */
+    private $avatar_file;
 
     public function __construct()
     {
@@ -192,4 +207,42 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return string|null
+     */
+    public function getAvatarName(): ?string
+    {
+        return $this->avatar_name;
+    }
+
+    /**
+     * @param string|null $avatar_name
+     * @return User
+     */
+    public function setAvatarName(?string $avatar_name): User
+    {
+        $this->avatar_name = $avatar_name;
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getAvatarFile(): ?File
+    {
+        return $this->avatar_file;
+    }
+
+    /**
+     * @param File|null $avatar_file
+     * @return User
+     */
+    public function setAvatarFile(?File $avatar_file): User
+    {
+        $this->avatar_file = $avatar_file;
+        return $this;
+    }
+
+
 }
