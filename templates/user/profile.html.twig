@@ -15,7 +15,7 @@
                     {% endfor %}
                 {% else %}
                     <div class="bg-white rounded mt-3 p-3">
-                        Aucun Thread.
+                        <i class="fas fa-heart-broken"></i> {{ user.pseudo }} n'a encore rien posté..
                     </div>
                 {% endif %}
             </div>
@@ -23,7 +23,7 @@
         <div class="col-md-4 p-3">
             <div class="bg-white rounded">
                 <div class="banner-block profile-head" {% if user.banner and user.banner.getBannerName %}style="background: url('{{ vich_uploader_asset(user.banner, 'banner_file') }}'); background-size: cover; background-position: top center;"{% endif %}>
-                    <div class="m-auto">
+                    <div class="m-auto rounded bg-white">
                         {% if user.avatar and user.avatar.getAvatarName %}
                             <img src="{{ vich_uploader_asset(user.avatar, 'avatar_file') }}" alt="Avatar">
                         {% else %}

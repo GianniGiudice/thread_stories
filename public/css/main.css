@@ -120,6 +120,7 @@ nav .nav-item .logout:hover {
 .avatar {
     width: 150px;
     height: 150px;
+    background: #fff;
 }
 
 .banner-block {
